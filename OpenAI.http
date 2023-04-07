@@ -18,7 +18,7 @@ Authorization: Bearer {{token}}
 }
 
 
-### Create image
+### Create image OK
 POST https://api.openai.com/v1/images/generations HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{token}}
@@ -29,7 +29,7 @@ Authorization: Bearer {{token}}
   "size": "1024x1024"
 }
 
-### Create image edit (upload)
+### Create image edit (upload) OK
 POST https://api.openai.com/v1/images/edits
 Authorization: Bearer {{token}}
 Content-Type: multipart/form-data; boundary="c2829be0-9f60-4aae-b0a1-e26d8a161a89"
@@ -49,6 +49,29 @@ Content-Type: text/plain;
 Content-Disposition: form-data; name=prompt
 
 A sunlit indoor lounge area with a pool containing a big pig
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Type: text/plain;
+Content-Disposition: form-data; name=n
+
+2
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Type: text/plain;
+Content-Disposition: form-data; name=size
+
+1024x1024
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89--
+
+
+### Create image variation 创建图像变体 OK
+POST https://api.openai.com/v1/images/variations
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary="c2829be0-9f60-4aae-b0a1-e26d8a161a89"
+
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Disposition: form-data; name=image; filename=image_edit_original.png; filename*=utf-8''image_edit_original.png
+Content-Type: image/png
+
+< Assets\a.png
 --c2829be0-9f60-4aae-b0a1-e26d8a161a89
 Content-Type: text/plain;
 Content-Disposition: form-data; name=n
