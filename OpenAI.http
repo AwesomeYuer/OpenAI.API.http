@@ -1,10 +1,28 @@
-
 ### baidu
 GET https://www.baidu.com
+
+
+### upload file for fine-tunes
+POST https://api.openai.com/v1/files
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary="e470962c-a2fd-4aa3-b337-c15e6e4da231"
+
+--e470962c-a2fd-4aa3-b337-c15e6e4da231
+Content-Type: text/plain;
+Content-Disposition: form-data; name=purpose
+
+fine-tune
+--e470962c-a2fd-4aa3-b337-c15e6e4da231
+Content-Disposition: form-data; name=file; filename=data_prepared.jsonl;
+
+< Assets\fine-tunes.data_prepared.jsonl
+--e470962c-a2fd-4aa3-b337-c15e6e4da231--
+
 
 ### fine-tunes
 GET https://api.openai.com/v1/fine-tunes HTTP/1.1
 Authorization: Bearer {{token}}
+
 
 ### embeddings
 POST https://api.openai.com/v1/embeddings HTTP/1.1
