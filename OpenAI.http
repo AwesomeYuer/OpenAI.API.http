@@ -1,10 +1,12 @@
+@baseAddress=https://api.openai.com/v1
+
 ### baidu
 GET https://www.baidu.com
 
 
 ### upload file for fine-tunes
-POST https://api.openai.com/v1/files
-Authorization: Bearer {{token}}
+POST {{baseAddress}}/files
+Authorization: Bearer {{openai_token}}
 Content-Type: multipart/form-data; boundary="e470962c-a2fd-4aa3-b337-c15e6e4da231"
 
 --e470962c-a2fd-4aa3-b337-c15e6e4da231
@@ -20,14 +22,14 @@ Content-Disposition: form-data; name=file; filename=data_prepared.jsonl;
 
 
 ### fine-tunes
-GET https://api.openai.com/v1/fine-tunes HTTP/1.1
-Authorization: Bearer {{token}}
+GET {{baseAddress}}/fine-tunes HTTP/1.1
+Authorization: Bearer {{openai_token}}
 
 
 ### embeddings
-POST https://api.openai.com/v1/embeddings HTTP/1.1
+POST {{baseAddress}}/embeddings HTTP/1.1
 content-type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{openai_token}}
 
 {
   "model": "text-embedding-ada-002",
@@ -37,9 +39,9 @@ Authorization: Bearer {{token}}
 
 
 ### Create image OK
-POST https://api.openai.com/v1/images/generations HTTP/1.1
+POST {{baseAddress}}/images/generations HTTP/1.1
 content-type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{openai_token}}
 
 {
   "prompt": "A beautiful girl",
@@ -48,8 +50,8 @@ Authorization: Bearer {{token}}
 }
 
 ### Create image edit (upload) OK
-POST https://api.openai.com/v1/images/edits
-Authorization: Bearer {{token}}
+POST {{baseAddress}}/images/edits
+Authorization: Bearer {{openai_token}}
 Content-Type: multipart/form-data; boundary="c2829be0-9f60-4aae-b0a1-e26d8a161a89"
 
 --c2829be0-9f60-4aae-b0a1-e26d8a161a89
@@ -81,8 +83,8 @@ Content-Disposition: form-data; name=size
 
 
 ### Create image variation 创建图像变体 OK
-POST https://api.openai.com/v1/images/variations
-Authorization: Bearer {{token}}
+POST {{baseAddress}}/images/variations
+Authorization: Bearer {{openai_token}}
 Content-Type: multipart/form-data; boundary="c2829be0-9f60-4aae-b0a1-e26d8a161a89"
 
 --c2829be0-9f60-4aae-b0a1-e26d8a161a89
