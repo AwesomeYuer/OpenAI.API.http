@@ -1,0 +1,105 @@
+@baseAddress=https://instance0001.openai.azure.com/openai/deployments/Deployment-001
+
+### baidu
+GET https://www.baidu.com
+
+
+### upload file for fine-tunes
+# https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/fine-tuning?pivots=programming-language-studio
+# upload by using portal/blob/oai
+POST {{baseAddress}}/files
+api-key: {{azure_open_ai_api_key}}
+Content-Type: multipart/form-data; boundary="e470962c-a2fd-4aa3-b337-c15e6e4da231"
+
+--e470962c-a2fd-4aa3-b337-c15e6e4da231
+Content-Type: text/plain;
+Content-Disposition: form-data; name=purpose
+
+fine-tune
+--e470962c-a2fd-4aa3-b337-c15e6e4da231
+Content-Disposition: form-data; name=file; filename=data_prepared.jsonl;
+
+< Assets\fine-tunes.data_prepared.jsonl
+--e470962c-a2fd-4aa3-b337-c15e6e4da231--
+
+
+### fine-tunes
+GET {{baseAddress}}/fine-tunes HTTP/1.1
+api-key: {{azure_open_ai_api_key}}
+
+
+### embeddings
+POST {{baseAddress}}/embeddings?api-version=2022-12-01 HTTP/1.1
+content-type: application/json
+api-key: {{azure_open_ai_api_key}}
+
+{
+  "input": 
+    "The food was delicious and the waiter...1"
+}
+
+### Create image OK
+POST {{baseAddress}}/images/generations HTTP/1.1
+content-type: application/json
+api-key: {{azure_open_ai_api_key}}
+
+{
+  "prompt": "A beautiful girl",
+  "n": 2,
+  "size": "1024x1024"
+}
+
+### Create image edit (upload) OK
+POST {{baseAddress}}/images/edits
+api-key: {{azure_open_ai_api_key}}
+Content-Type: multipart/form-data; boundary="c2829be0-9f60-4aae-b0a1-e26d8a161a89"
+
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Disposition: form-data; name=image; filename=image_edit_original.png; filename*=utf-8''image_edit_original.png
+Content-Type: image/png
+
+< Assets\a.png
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Disposition: form-data; name=mask; filename=image_edit_mask.png; filename*=utf-8''image_edit_mask.png
+Content-Type: image/png
+
+< Assets\a.mask.png
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Type: text/plain;
+Content-Disposition: form-data; name=prompt
+
+A sunlit indoor lounge area with a pool containing a big pig
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Type: text/plain;
+Content-Disposition: form-data; name=n
+
+2
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Type: text/plain;
+Content-Disposition: form-data; name=size
+
+1024x1024
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89--
+
+
+### Create image variation 创建图像变体 OK
+POST {{baseAddress}}/images/variations
+api-key: {{azure_open_ai_api_key}}
+Content-Type: multipart/form-data; boundary="c2829be0-9f60-4aae-b0a1-e26d8a161a89"
+
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Disposition: form-data; name=image; filename=image_edit_original.png; filename*=utf-8''image_edit_original.png
+Content-Type: image/png
+
+< Assets\a.png
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Type: text/plain;
+Content-Disposition: form-data; name=n
+
+2
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89
+Content-Type: text/plain;
+Content-Disposition: form-data; name=size
+
+1024x1024
+--c2829be0-9f60-4aae-b0a1-e26d8a161a89--
