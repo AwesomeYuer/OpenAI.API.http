@@ -1,4 +1,4 @@
-@baseAddress=https://instance0001.openai.azure.com/openai/deployments/Deployment-001
+@baseAddress=https://awesomeyuer.openai.azure.com/openai/deployments
 
 ### baidu
 GET https://www.baidu.com
@@ -29,7 +29,7 @@ api-key: {{azure_open_ai_api_key}}
 
 
 ### embeddings
-POST {{baseAddress}}/embeddings?api-version=2022-12-01 HTTP/1.1
+POST {{baseAddress}}/deployment-001-text-embedding-ada-002/embeddings?api-version=2022-12-01 HTTP/1.1
 content-type: application/json
 api-key: {{azure_open_ai_api_key}}
 
