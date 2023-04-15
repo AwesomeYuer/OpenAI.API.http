@@ -1,4 +1,8 @@
-@baseAddress=https://api.openai.com/v1
+# @baseAddress=https://api.openai.com/v1
+
+# @baseAddress=https://localhost:7000/openai/v1
+
+@baseAddress={{openai_api_reverse_proxy}}/v1
 
 ### baidu
 GET https://www.baidu.com
@@ -44,7 +48,7 @@ content-type: application/json
 Authorization: Bearer {{openai_token}}
 
 {
-  "prompt": "A beautiful girl",
+  "prompt": "A beautiful girl with a full beard on her face",
   "n": 2,
   "size": "1024x1024"
 }
