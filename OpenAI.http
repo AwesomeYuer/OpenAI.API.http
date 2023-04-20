@@ -4,7 +4,11 @@
 
 # @baseAddress=https://localhost:7000/openai/v1
 
-@baseAddress={{openai_api_reverse_proxy}}/v1
+
+
+@baseAddress={{openai_api_az_func_reverse_proxy}}/v1
+
+# @baseAddress={{openai_api_yarp_reverse_proxy}}/v1
 
 ### baidu
 GET https://www.baidu.com
