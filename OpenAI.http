@@ -16,7 +16,7 @@ GET https://www.baidu.com
 
 ### upload file for fine-tunes
 POST {{baseAddress}}/files
-Authorization: Bearer {{openai_token}}
+Authorization: Bearer {{open_ai_key}}
 Content-Type: multipart/form-data; boundary="{{boundary}}"
 
 --{{boundary}}
@@ -33,13 +33,13 @@ Content-Disposition: form-data; name=file; filename=data_prepared.jsonl;
 
 ### fine-tunes
 GET {{baseAddress}}/fine-tunes HTTP/1.1
-Authorization: Bearer {{openai_token}}
+Authorization: Bearer {{open_ai_key}}
 
 
 ### embeddings
 POST {{baseAddress}}/embeddings HTTP/1.1
 content-type: application/json
-Authorization: Bearer {{openai_token}}
+Authorization: Bearer {{open_ai_key}}
 
 {
   "model": "text-embedding-ada-002",
@@ -53,7 +53,7 @@ Authorization: Bearer {{openai_token}}
 ### Create image OK
 POST {{baseAddress}}/images/generations HTTP/1.1
 content-type: application/json
-Authorization: Bearer {{openai_token}}
+Authorization: Bearer {{open_ai_key}}
 
 {
   "prompt": "A beautiful girl with a full beard on her face",
@@ -63,7 +63,7 @@ Authorization: Bearer {{openai_token}}
 
 ### Create image edit (upload) OK
 POST {{baseAddress}}/images/edits
-Authorization: Bearer {{openai_token}}
+Authorization: Bearer {{open_ai_key}}
 Content-Type: multipart/form-data; boundary="{{boundary}}"
 
 --{{boundary}}
@@ -96,7 +96,7 @@ Content-Disposition: form-data; name=size
 
 ### Create image variation 创建图像变体 OK
 POST {{baseAddress}}/images/variations
-Authorization: Bearer {{openai_token}}
+Authorization: Bearer {{open_ai_key}}
 Content-Type: multipart/form-data; boundary="{{boundary}}"
 
 --{{boundary}}
