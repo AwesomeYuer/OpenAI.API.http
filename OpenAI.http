@@ -4,7 +4,7 @@
 
 # @baseAddress=https://localhost:7000/openai/v1
 
-
+@finetunecustommodel=awesomeyuer-model
 
 @baseAddress={{openai_api_az_func_reverse_proxy}}/v1
 
@@ -27,11 +27,23 @@ fine-tune
 --{{boundary}}
 Content-Disposition: form-data; name=file; filename=data_prepared.jsonl;
 
-< Assets\fine-tunes.data_prepared.jsonl
+< Assets\awesome.yuer.fine-tunes.data_prepared.jsonl
 --{{boundary}}--
 
 
-### fine-tunes
+### create fine-tunes job
+POST {{baseAddress}}/fine-tunes HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{open_ai_key}}
+
+{
+    "training_file": "file-uxjvt7jAybrbYwPow7SXun6G"
+}
+
+
+
+
+### fine-tunes list
 GET {{baseAddress}}/fine-tunes HTTP/1.1
 Authorization: Bearer {{open_ai_key}}
 
